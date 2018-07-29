@@ -16,7 +16,7 @@ public class SocketServer extends Server {
     @Override
     public void start(ClientHandler ch) {
         if (!isRunning) {
-            super.start(ch);
+            super.start(ch); // stopListen = false;
             runServer();
         }
     }
@@ -46,11 +46,12 @@ public class SocketServer extends Server {
         }
     }
 
-    public void StartServer() {
+    // why ?
+    /*public void StartServer() {
         stopListen = false;
         if (!isRunning)
             runServer();
-    }
+    }*/
 
     @Override
     public void stop() {

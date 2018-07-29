@@ -1,7 +1,6 @@
 package com.company;
 
-/// Use INTERFACE FOR ISERVER!!
-public abstract class Server {
+public abstract class Server implements IServer{
     public int port;
     public ClientHandler ch;
     public boolean stopListen = false;

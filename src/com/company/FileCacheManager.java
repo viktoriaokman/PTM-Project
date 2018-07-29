@@ -5,22 +5,27 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class FileCacheManager extends CacheManager {
+
+    FileWriter fileWriter;
+
+    public FileCacheManager() {
+        try {
+            fileWriter = new FileWriter("solutions.txt", true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     /**
-     * @param problemAsID    - saved as file name
+     * @param problemAsID    - saved as key in solutions.txt
      * @param solutionToSave - saves as plain text, format ahead if needed!
      */
     @Override
     public void save(IProblem problemAsID, ISolution solutionToSave) {
-        try {
-            FileWriter fileWriter = new FileWriter(problemAsID.GetName() + ".txt");
-            PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.write(solutionToSave.GetContent()); // Make sure this is with delimiters or something..
-            printWriter.close();
-            super.save(problemAsID, solutionToSave);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String line = String.format("#Problem:%1$s #Solution:%2$s ",problemAsID.ProblemAsString(),solutionToSave.GetContent());
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.write(line); // Make sure this is with delimiters or something..
+        printWriter.close();
+        super.save(problemAsID, solutionToSave); //dictionary.put()
     }
 
     /**
@@ -35,4 +40,5 @@ public class FileCacheManager extends CacheManager {
             return super.load(problemAsID);
         return null;
     }
+
 }

@@ -1,7 +1,7 @@
 package com.company;
 
-public interface ISolution {
+public interface ISolution<T> {
     String GetContent();
 
-    byte[] toOutPutStream();
+    byte[] toOutPutStreamAsBytes();
 }

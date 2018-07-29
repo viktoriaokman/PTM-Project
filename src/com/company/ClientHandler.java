@@ -21,18 +21,23 @@ public class ClientHandler implements IClientHandler {
         }
 
         try {
-            outToClient.write(solution.toOutPutStream());
+            outToClient.write(solution.toOutPutStreamAsBytes());
             outToClient.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public ClientHandler(ICacheManager cacheManager) {
+    public ClientHandler(ICacheManager cacheManager, ISolver solver) {
         setCacheManager(cacheManager);
+        setSolver(solver);
     }
 
     public void setCacheManager(ICacheManager cacheManager) {
         this.cacheManager = cacheManager;
+    }
+
+    public void setSolver(ISolver solver) {
+        this.solver = solver;
     }
 }

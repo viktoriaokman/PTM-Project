@@ -1,5 +1,6 @@
 package com.company;
 
 public interface IProblem {
-    public String GetName();
+    public String ProblemAsString();
+    public int GetSize();
 }

@@ -1,42 +1,49 @@
 package com.company;
 
+import java.util.Stack;
+
 public class Solution implements ISolution {
-    String _solutionName = "";
-    String _solutionContent = "";
     String _delimiter = "";
+    Stack<State> _solutionContent;
 
-
-    /// CHECK LATER
-    public Solution(ISolution solutionToSave) {
-
+    public void add_solutionContent(State content) {
+        _solutionContent.push(content);
     }
 
-    public void set_delimiter(String _delimiter) {
-        this._delimiter = _delimiter;
-    }
-
-    public void set_solutionName(String _solutionName) {
-        this._solutionName = _solutionName;
-    }
-
-    public void set_solutionContent(String _solutionContent) {
-        this._solutionContent = _solutionContent;
-    }
-
-    public Solution(String name, String content, String delimiter) {
-        if (content != null) set_solutionContent(content);
-        if (name != null) set_solutionName(name);
-        if (delimiter != null) set_delimiter(delimiter);
-    }
-
+    /**
+     *
+     * @return
+     */
     @Override
     public String GetContent() {
-        return _solutionContent;
-    }
 
-    // TODO: Check from igor if can use IOUtils
+        String out = "";
+        try {
+            while (!_solutionContent.isEmpty())
+            {
+                out = out + _solutionContent.pop();
+            }
+        } catch (ClassCastException e) {
+            return null;
+        }
+        return out;
+    }
+    // TODO: Convert all string imp to generics
+    /*public void set_solutionContent(String _solutionContent) {
+        this._solutionContent = _solutionContent;
+    }*/
+
+    /*public Solution(String content) {
+        if (content != null) set_solutionContent(content);
+        _delimiter = "#Solution:";
+    }*/
+   // @Override
+    /*public String GetContent() {
+        return _solutionContent;
+    }*/
+
     @Override
-    public byte[] toOutPutStream() {
-        return new byte[0];
+    public byte[] toOutPutStreamAsBytes() {
+        return PTMUtils.convertStringToBytes(GetContent());
     }
 }

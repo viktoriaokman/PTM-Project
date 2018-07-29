@@ -1,32 +1,37 @@
 package com.company;
 
-import java.io.IOException;
 import java.io.InputStream;
 
-public class Problem implements IProblem{
-    private String _problemName;
-    private String _problemContent;
-    private String _delimiter;
+// TODO : Convert all string imp to generics
+public class Problem<T> implements IProblem {
+    //private String _problemContent;
+    //private String _delimiter;
+    T problem;
+    int _size = 0;
+    /*public Problem(InputStream inFromClient) {
+        problem = (T) PTMUtils.convertStreamToString(inFromClient);
+        //_delimiter = "#Problem:";
+    }*/
 
-    // TODO: Check from igor if can use IOUtils
-    public Problem(InputStream inFromClient) {
-        try {
-            inFromClient.readAllBytes();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public Problem (T problem)
+    {
+        this.problem = problem;
     }
 
-    // Mock! not finished!!
-    private Problem FromInputStream(InputStream problem)
-    {
-        // ??
-        //return new Problem();
+    public String ProblemAsString() {
+        try
+        {
+            return PTMUtils.convertStreamToString((InputStream)problem);
+        }
+        catch (Exception e)
+        {
+            //?
+        }
+        return "";
     }
 
     @Override
-    public String GetName() {
-        //string.parse(problem._problemContent,_delimiter)
-        return this._problemName;
+    public int GetSize() {
+        return _size;
     }
 }
