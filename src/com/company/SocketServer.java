@@ -8,8 +8,8 @@ public class SocketServer extends Server {
 
     private Boolean isRunning = false; // Used to prevent multiple instances. maybe redundant
 
-    public SocketServer(int port, ClientHandler ch) {
-        super(port, ch);
+    public SocketServer(int port) {
+        super(port);
         isRunning = false;
     }
 

@@ -1,12 +1,12 @@
 package com.company;
 
-public class Point<T> {
+public class Point<String> {
     int x;
     int y;
-    T content;
+    String content;
     TypeOfPoint typeOfPoint;
 
-    public Point(int x,int y,T content,TypeOfPoint typeOfPoint)
+    public Point(int x,int y,String content,TypeOfPoint typeOfPoint)
     {
         this.x = x;
         this.y = y;

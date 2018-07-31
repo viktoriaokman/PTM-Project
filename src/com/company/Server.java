@@ -5,12 +5,12 @@ public abstract class Server implements IServer{
     public ClientHandler ch;
     public boolean stopListen = false;
 
-    public Server(int port, ClientHandler ch) {
+    public Server(int port) {
         this.port = port;
-        this.ch = ch;
     }
 
     public void start(ClientHandler ch) {
+        this.ch = ch;
         stopListen = false;
     }
 

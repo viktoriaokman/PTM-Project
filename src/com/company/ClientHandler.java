@@ -33,6 +33,10 @@ public class ClientHandler implements IClientHandler {
         setSolver(solver);
     }
 
+    public ClientHandler()
+    {
+
+    }
     public void setCacheManager(ICacheManager cacheManager) {
         this.cacheManager = cacheManager;
     }
