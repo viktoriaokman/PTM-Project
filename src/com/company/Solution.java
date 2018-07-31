@@ -28,19 +28,7 @@ public class Solution implements ISolution {
         }
         return out;
     }
-    // TODO: Convert all string imp to generics
-    /*public void set_solutionContent(String _solutionContent) {
-        this._solutionContent = _solutionContent;
-    }*/
 
-    /*public Solution(String content) {
-        if (content != null) set_solutionContent(content);
-        _delimiter = "#Solution:";
-    }*/
-   // @Override
-    /*public String GetContent() {
-        return _solutionContent;
-    }*/
 
     @Override
     public byte[] toOutPutStreamAsBytes() {

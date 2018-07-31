@@ -19,13 +19,14 @@ public class State<T> {
         return parent;
     }
 
-    // TODO : finish this
+
     public double getTotalDistance() {
         double distance = 0;
-        while (this.getParent() != null)
+        if (this.getParent() != null)
         {
-
+            distance ++;
+            this.getParent().getTotalDistance();
         }
-        return value;
+        return distance;
     }
 }

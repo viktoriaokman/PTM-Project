@@ -7,15 +7,16 @@ public class PipeGameSolver implements ISolver{
 
     @Override
     public ISolution solve(IProblem problem) {
-        PipeGameBoard gameToSolve = new PipeGameBoard(problem.GetSize());
+        PipeGameBoard gameToSolve = new PipeGameBoard(problem);
         BenchmarkAlgos benchmarkAlgos = new BenchmarkAlgos();
-        ISearcher bestAlgo = benchmarkAlgos.GetBestAlgo(problem.GetSize(),gameToSolve);
-        Solution s = bestAlgo.search(gameToSolve);
+        searcher = benchmarkAlgos.GetBestAlgo(problem.GetSize(),gameToSolve);
+        Solution s = searcher.search(gameToSolve);
         return s;
     }
 
     @Override
     public IProblem createProblem() {
+
         return null;
     }
 }

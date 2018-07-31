@@ -21,7 +21,7 @@ public class FileCacheManager extends CacheManager {
      */
     @Override
     public void save(IProblem problemAsID, ISolution solutionToSave) {
-        String line = String.format("#Problem:%1$s #Solution:%2$s ",problemAsID.ProblemAsString(),solutionToSave.GetContent());
+        String line = String.format("#Problem:%1$s #Solution:%2$s ",problemAsID.GetProblemContent(),solutionToSave.GetContent());
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.write(line); // Make sure this is with delimiters or something..
         printWriter.close();

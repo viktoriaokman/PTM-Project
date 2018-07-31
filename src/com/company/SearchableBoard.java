@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 public class SearchableBoard implements ISearchable {
-    GameBoard board;
+    PipeGameBoard board;
 
     @Override
     public State getInitialState() {
