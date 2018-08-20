@@ -1,8 +1,8 @@
 package com.company;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 
 public class ClientHandler implements IClientHandler {
 
@@ -12,6 +12,8 @@ public class ClientHandler implements IClientHandler {
     @Override
     public void handleClient(InputStream inFromClient, OutputStream outToClient) {
         // Convert input to Problem
+        PrintWriter out =
+                new PrintWriter(outToClient, true);
 
         Problem problemFromUser = new Problem(inFromClient);
 
@@ -24,9 +26,11 @@ public class ClientHandler implements IClientHandler {
         }
 
         try {
-            outToClient.write(solution.toOutPutStreamAsBytes());
-            outToClient.flush();
-        } catch (IOException e) {
+            /*outToClient.write(solution.toOutPutStreamAsBytes());
+            outToClient.flush();*/
+            out.println(solution.GetContent());
+            out.println("done");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

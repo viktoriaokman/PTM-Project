@@ -3,7 +3,6 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.stream.Collectors;
 
 public class PTMUtils {
 
@@ -14,12 +13,23 @@ public class PTMUtils {
      * @return
      */
     static String convertStreamToString(InputStream is) {
-        String result = new BufferedReader(new InputStreamReader(is)).lines().parallel().collect(Collectors.joining("\n"));
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(is));
 
-        if (result.contains("done")) {
-            result = result.substring(0, result.indexOf('\n'));
+        try {
+            String result = in.readLine();
+
+            if (result.contains("done")) {
+                result = result.substring(0, result.indexOf('\n'));
+            }
+
+            return result;
         }
-        return result;
+        catch (Exception e)
+        {
+            return "";
+        }
+
     }
 
     static byte[] convertStringToBytes(String str) {

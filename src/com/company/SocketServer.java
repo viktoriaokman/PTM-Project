@@ -41,10 +41,10 @@ public class SocketServer extends Server implements IServer{
                     Socket clientSocket = server.accept();
 
                         ch.handleClient(clientSocket.getInputStream(), clientSocket.getOutputStream());
-                //clientSocket.getOutputStream().close();
-                //clientSocket.getInputStream().close();
+                /*clientSocket.getOutputStream().close();
+                clientSocket.getInputStream().close();
 
-                clientSocket.close();
+                clientSocket.close();*/
             }
             catch ( Exception ex) {
             isRunning = false;
