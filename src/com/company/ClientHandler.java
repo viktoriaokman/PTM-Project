@@ -7,11 +7,14 @@ import java.io.OutputStream;
 public class ClientHandler implements IClientHandler {
 
     ICacheManager cacheManager;
-    PipeGameSolver solver;
+    /*PipeGameSolver solver;*/
+    ISolver solver;
     @Override
     public void handleClient(InputStream inFromClient, OutputStream outToClient) {
         // Convert input to Problem
+
         Problem problemFromUser = new Problem(inFromClient);
+
         ISolution solution;
         if (cacheManager.isSolutionStored(problemFromUser)) {
             solution = cacheManager.load(problemFromUser);
@@ -35,7 +38,8 @@ public class ClientHandler implements IClientHandler {
 
     public ClientHandler()
     {
-
+        setCacheManager(new FileCacheManager());
+        setSolver(new PipeGameSolver());
     }
     public void setCacheManager(ICacheManager cacheManager) {
         this.cacheManager = cacheManager;

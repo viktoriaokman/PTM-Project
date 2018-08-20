@@ -6,8 +6,8 @@ import java.util.Stack;
 public class GBFS implements ISearcher{
     int _nodesEvaluated = 0;
     Solution gbfs_solution;
-    State destination;
-    State source;
+    State<Point> destination;
+    State<Point> source;
 
     @Override
     public Solution search(ISearchable problem) {
@@ -17,36 +17,45 @@ public class GBFS implements ISearcher{
         source = problem.getInitialState();
         Stack<State> graph=new  Stack<State>();
         graph.add(source);
-        source.visited=true;
+        source.state.visited=true;
         while (!graph.isEmpty())
         {
-            State node=graph.pop();
-            if (node == destination) {
+            State<Point> node=graph.pop();
+            if (node.state.content.equals(destination.state.content)) {
                 gbfs_solution.add_solutionContent(node);
                 _nodesEvaluated++;
                 return gbfs_solution;
             }
-            ArrayList<State> neighbours=problem.getAllPossibleStates(node);
+            ArrayList<State<Point>> neighbours=problem.getAllPossibleStates(node);
             for (int i = 0; i < neighbours.size(); i++) {
 
-                // Get "best" option out of current neineighbours
-                State n = neighbours.get(neighbours.indexOf(neighbours.stream().mapToDouble(v -> (double)v.value).min()));
-                if(n!=null && !n.visited)
+                State<Point> n = neighbours.get(0);
+                // Get "best" option out of current neighbours
+                for (int index=0;index<neighbours.size();index++)
+                {
+                    if (neighbours.get(index).value <= n.value && !neighbours.get(index).state.visited)
+                        n = neighbours.get(index);
+                }
+                //State<Point> n = neighbours.get(neighbours.indexOf(neighbours.stream().mapToDouble(v -> (double)v.value).min()));
+                if(n!=null && !n.state.visited)
                 {
                     n.setCameFrom(node);
                     _nodesEvaluated++;
-                    if (n == destination)
+                    if (n.state.content.equals(destination.state.content))
                     {
-                        State current = destination;
+                        gbfs_solution.add_solutionContent(n);
+
+                        /*State current = n;
                         while (current != null)
                         {
                             gbfs_solution.add_solutionContent(current);
-                            current.getParent();
-                        }
+                            current = current.getParent();
+                        }*/
                         return gbfs_solution;
                     }
                     graph.add(n);
-                    n.visited=true;
+                    n.state.visited=true;
+                    graph.addAll(problem.getAllPossibleStates(n));
                 }
             }
         }

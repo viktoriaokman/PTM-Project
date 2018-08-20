@@ -10,33 +10,46 @@ public class BFS  implements ISearcher{
     @Override
     public Solution search(ISearchable problem) {
         bfs_solution = new Solution();
-        State source = problem.getInitialState();
-        State destination = problem.getGoalState();
+        State<Point> source = problem.getInitialState();
+        State<Point> destination = problem.getGoalState();
 
+        // TODO : improve - make sure this has only unique states!!
         LinkedList<State> queue = new LinkedList<State>();
         queue.add(source);
-        source.visited = true;
+        source.state.visited = true;
         while (!queue.isEmpty())
         {
-            State element = queue.remove();
+            State<Point> element = queue.remove();
+
+            // Moshe adding from DFS
+            if (element.state.content.equals(destination.state.content)) {
+                bfs_solution.add_solutionContent(element);
+                _nodesEvaluated++;
+                return bfs_solution;
+            }
+
             List<State> neighbours= problem.getAllPossibleStates(element);
             for (int i = 0; i < neighbours.size(); i++) {
-                State n=neighbours.get(i);
-                if(n!=null && !n.visited)
+                State<Point> n=neighbours.get(i);
+                if(n!=null && !n.state.visited)
                 {
+                    n.setCameFrom(element); // M
                     _nodesEvaluated++;
-                    if (n == destination)
+                    if (n.state.content.equals(destination.state.content))
                     {
-                        State current = destination;
+                        bfs_solution.add_solutionContent(n);
+                        return bfs_solution;
+                        /*State<Point> current = n;
                         while (current != null)
                         {
                             bfs_solution.add_solutionContent(current);
-                            current.getParent();
+                            current = current.getParent();
                         }
-                        return bfs_solution;
+                        return bfs_solution;*/
                     }
                     queue.add(n);
-                    n.visited=true;
+                    n.state.visited=true;
+                    queue.addAll(problem.getAllPossibleStates(n));
                 }
             }
         }

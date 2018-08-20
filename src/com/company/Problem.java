@@ -7,15 +7,13 @@ public class Problem implements IProblem {
     int _size = 0;
     public Problem(InputStream inFromClient) {
         problem = PTMUtils.convertStreamToString(inFromClient);
+        _size=problem.length();
     }
 
 
     public Point[][] toPoints()
     {
         Point[][] p = new Point[_size][_size];
-
-
-
         return p;
     }
 

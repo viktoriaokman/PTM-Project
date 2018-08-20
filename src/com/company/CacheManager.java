@@ -1,9 +1,11 @@
 package com.company;
 
-import java.util.Dictionary;
+import java.util.HashMap;
 
 public abstract class CacheManager implements ICacheManager { // My way - Multiple problems \ solutions
-    Dictionary<IProblem, ISolution> savedSolutions;
+    //Dictionary<IProblem, ISolution> savedSolutions;
+    HashMap<IProblem,ISolution> savedSolutions;
+    //HashMap<IProblem,ISolution> saasas = new HashMap<>();
 
     @Override
     public void save(IProblem problemAsID, ISolution solutionToSave) {

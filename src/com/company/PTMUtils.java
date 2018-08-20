@@ -14,8 +14,11 @@ public class PTMUtils {
      * @return
      */
     static String convertStreamToString(InputStream is) {
-        String result = new BufferedReader(new InputStreamReader(is)).lines()
-                .parallel().collect(Collectors.joining("\n"));
+        String result = new BufferedReader(new InputStreamReader(is)).lines().parallel().collect(Collectors.joining("\n"));
+
+        if (result.contains("done")) {
+            result = result.substring(0, result.indexOf('\n'));
+        }
         return result;
     }
 

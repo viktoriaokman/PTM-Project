@@ -39,11 +39,20 @@ public class BenchmarkAlgos {
     {
         Map<ISearcher,Long> algoTime = new HashMap<ISearcher, Long>();
 
-        algoTime.put(new DFS(),TestAlgo(new DFS(),sizeOfBoard,problem));
-        algoTime.put(new BFS(),TestAlgo(new BFS(),sizeOfBoard,problem));
-        algoTime.put(new GBFS(),TestAlgo(new GBFS(),sizeOfBoard,problem));
-        algoTime.put(new HillClimb(),TestAlgo(new HillClimb(),sizeOfBoard,problem));
-        algoTime.put(new AStar(),TestAlgo(new AStar(),sizeOfBoard,problem));
+        DFS dfs = new DFS();
+        BFS bfs = new BFS();
+        GBFS gbfs = new GBFS();
+        HillClimb hc = new HillClimb();
+        AStar astar = new AStar();
+
+        algoTime.put(dfs,TestAlgo(dfs,sizeOfBoard,problem));
+        algoTime.put(bfs,TestAlgo(bfs,sizeOfBoard,problem));
+        algoTime.put(gbfs,TestAlgo(gbfs,sizeOfBoard,problem));
+
+        algoTime.put(hc,Long.MAX_VALUE);
+        //algoTime.put(hc,TestAlgo(hc,sizeOfBoard,problem));
+        algoTime.put(astar,Long.MAX_VALUE -100);
+        //algoTime.put(astar,TestAlgo(astar,sizeOfBoard,problem));
 
         Map.Entry<ISearcher, Long> min = null;
         for (Map.Entry<ISearcher, Long> entry : algoTime.entrySet()) {

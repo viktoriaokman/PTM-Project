@@ -3,12 +3,14 @@ package com.company;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 
-public class FileCacheManager extends CacheManager {
+public class FileCacheManager extends CacheManager implements ICacheManager{
 
     FileWriter fileWriter;
 
     public FileCacheManager() {
+        savedSolutions = new HashMap<>();
         try {
             fileWriter = new FileWriter("solutions.txt", true);
         } catch (IOException e) {

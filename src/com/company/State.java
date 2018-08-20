@@ -3,7 +3,6 @@ package com.company;
 public class State<T> {
     T state;
     State parent;
-    boolean visited = false;
     double value = 1;
 
     public State(T state) {
@@ -19,6 +18,10 @@ public class State<T> {
         return parent;
     }
 
+    public State Clone()
+    {
+        return new State(this.state,this.value);
+    }
 
     public double getTotalDistance() {
         double distance = 0;

@@ -1,8 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-
-public class SearchableBoard implements ISearchable {
+/*public class SearchableBoard implements ISearchable {
     PipeGameBoard board;
 
     @Override
@@ -19,7 +17,7 @@ public class SearchableBoard implements ISearchable {
     public ArrayList<State<Point>> getAllPossibleStates(State s) {
         State<Point> Current = s;
         ArrayList<State<Point>> list = new ArrayList<>();
-        ArrayList<Point> allPoint = board.getAllAdj(Current.state.x,Current.state.y);
+        ArrayList<Point> allPoint = board.getAllAdj(Current.state);
         for (int i = 0 ; i < allPoint.size();i++)
         {
             State<Point> SP = new State<Point>(allPoint.get(i));
@@ -27,4 +25,4 @@ public class SearchableBoard implements ISearchable {
         }
         return list;
     }
-}
+}*/

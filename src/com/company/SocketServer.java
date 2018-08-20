@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class SocketServer extends Server {
+public class SocketServer extends Server implements IServer{
 
     private Boolean isRunning = false; // Used to prevent multiple instances. maybe redundant
 
@@ -17,14 +17,18 @@ public class SocketServer extends Server {
     public void start(ClientHandler ch) {
         if (!isRunning) {
             super.start(ch); // stopListen = false;
-            runServer();
+            //runServer();
+            new Thread(()->runServer()).start();
         }
+
     }
 
-    private void runServer() {
+    private void runServer(){
         ServerSocket server = null;
         try {
+
             server = new ServerSocket(port);
+            server.setSoTimeout(3000);
         } catch (IOException e) {
             //e.printStackTrace();
             stopListen = true;
@@ -34,16 +38,19 @@ public class SocketServer extends Server {
             isRunning = true;
             try {
                 // Check connection is made
-                Socket clientSocket = server.accept();
+                    Socket clientSocket = server.accept();
 
-                ch.handleClient(clientSocket.getInputStream(), clientSocket.getOutputStream());
-                clientSocket.getInputStream().close();
-                clientSocket.getOutputStream().close();
+                        ch.handleClient(clientSocket.getInputStream(), clientSocket.getOutputStream());
+                //clientSocket.getOutputStream().close();
+                //clientSocket.getInputStream().close();
+
                 clientSocket.close();
-            } catch (Exception ex) {
-                isRunning = false;
+            }
+            catch ( Exception ex) {
+            isRunning = false;
             }
         }
+
     }
 
     // why ?

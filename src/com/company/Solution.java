@@ -6,6 +6,10 @@ public class Solution implements ISolution {
     String _delimiter = "";
     Stack<State> _solutionContent;
 
+    public Solution()
+    {
+        this._solutionContent = new Stack<>();
+    }
     public void add_solutionContent(State content) {
         _solutionContent.push(content);
     }
@@ -18,14 +22,24 @@ public class Solution implements ISolution {
     public String GetContent() {
 
         String out = "";
+        Stack<State> backup = (Stack<State>)_solutionContent.clone();
         try {
             while (!_solutionContent.isEmpty())
             {
-                out = out + _solutionContent.pop();
+                State current = _solutionContent.pop();
+                Point a = (Point)current.state;
+                out =  a.content + out;
+                while (current.getParent() != null)
+                {
+                    current = current.getParent();
+                    a = (Point)current.state;
+                    out =  a.content + out;
+                }
             }
         } catch (ClassCastException e) {
             return null;
         }
+        _solutionContent = backup;
         return out;
     }
 

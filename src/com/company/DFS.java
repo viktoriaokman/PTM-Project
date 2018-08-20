@@ -6,8 +6,8 @@ import java.util.Stack;
 public class DFS implements ISearcher {
     int _nodesEvaluated = 0;
     Solution dfs_solution;
-    State destination;
-    State source;
+    State<Point> destination;
+    State<Point> source;
 
     @Override
     public Solution search(ISearchable problem) {
@@ -17,34 +17,41 @@ public class DFS implements ISearcher {
         source = problem.getInitialState();
         Stack<State> graph=new  Stack<State>();
         graph.add(source);
-        source.visited=true;
+        source.state.visited=true;
         while (!graph.isEmpty())
         {
-            State node=graph.pop();
-            if (node == destination) {
+            State<Point> node=graph.pop();
+            if (node.state.content.equals(destination.state.content)) {
                 dfs_solution.add_solutionContent(node);
                 _nodesEvaluated++;
                 return dfs_solution;
             }
             ArrayList<State> neighbours=problem.getAllPossibleStates(node);
+            //State<Point> lastParent = node;
             for (int i = 0; i < neighbours.size(); i++) {
-                State n=neighbours.get(i);
-                if(n!=null && !n.visited)
+                State<Point> n=neighbours.get(i);
+                if(n!=null && !n.state.visited)
                 {
                     n.setCameFrom(node);
+                    //lastParent = n;
                     _nodesEvaluated++;
-                    if (n == destination)
+                    if (n.state.content.equals(destination.state.content))
                     {
-                        State current = destination;
+                        dfs_solution.add_solutionContent(n);
+
+                        /*State current = n;
                         while (current != null)
                         {
                             dfs_solution.add_solutionContent(current);
-                            current.getParent();
-                        }
+                            current = current.getParent();
+                        }*/
                         return dfs_solution;
                     }
                     graph.add(n);
-                    n.visited=true;
+                    n.state.visited=true;
+                    //neighbours.addAll(problem.getAllPossibleStates(n));
+                    graph.addAll(problem.getAllPossibleStates(n));
+
                 }
             }
         }
