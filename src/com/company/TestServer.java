@@ -33,9 +33,9 @@ public class TestServer {
 			System.out.println("Your Server ran into some IOException (-40)");
 		}finally{
 			try {
-				//in.close();
-				//out.close();
-				//s.close();
+				in.close();
+				out.close();
+				s.close();
 			} catch (Exception e) {
 				System.out.println("Your Server ran into some IOException (-40)");
 			}
