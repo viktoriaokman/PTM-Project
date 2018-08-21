@@ -26,24 +26,22 @@ public class SocketServer extends Server implements IServer{
         ServerSocket server = null;
         try {
 
-
+            server = new ServerSocket(port);
+            server.setSoTimeout(3000);
             while (!closeServer) {
                 //isRunning = true;
                 try {
                     // Check connection is made
-                    server = new ServerSocket(port);
-                    server.setSoTimeout(3000);
-
                     Socket clientSocket = server.accept();
                     InputStream in = clientSocket.getInputStream();
                     OutputStream out = clientSocket.getOutputStream();
 
                     ch.handleClient(in, out);
                 // op 2
-                 /*   clientSocket.getOutputStream().close();
+                clientSocket.getOutputStream().close();
                 clientSocket.getInputStream().close();
 
-                clientSocket.close();*/
+                clientSocket.close();
                 }
                 catch ( Exception ex) {
                     //isRunning = false;
