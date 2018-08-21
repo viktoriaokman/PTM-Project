@@ -11,7 +11,7 @@ public class DFS implements ISearcher {
 
     @Override
     public Solution search(ISearchable problem) {
-        dfs_solution = new Solution();
+        dfs_solution = new Solution(problem.getSize());
 
         destination = problem.getGoalState();
         source = problem.getInitialState();

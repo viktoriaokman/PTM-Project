@@ -20,6 +20,9 @@ public class MainTrain {
 		TestSetter.runServer(port);
 		try{
 			TestServer.runClient(port);
+			TestServer.runClient(6734/*port+1*/);
+			TestServer.runClient(6957);
+
 		}finally{
 			TestSetter.stopServer();
 		}

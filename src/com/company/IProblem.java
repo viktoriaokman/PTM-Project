@@ -1,6 +1,8 @@
 package com.company;
 
+import java.util.List;
+
 public interface IProblem {
-    public String GetProblemContent();
+    public List<String> GetProblemContent();
     public int GetSize();
 }

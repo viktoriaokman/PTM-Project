@@ -19,9 +19,9 @@ public class PTMUtils {
         try {
             String result = in.readLine();
 
-            if (result.contains("done")) {
+            /*if (result.contains("done")) {
                 result = result.substring(0, result.indexOf('\n'));
-            }
+            }*/
 
             return result;
         }

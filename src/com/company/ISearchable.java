@@ -6,4 +6,5 @@ public interface ISearchable<T> {
     State getInitialState();
     State getGoalState();
     ArrayList<State> getAllPossibleStates(State<T> s);
+    int getSize();
 }

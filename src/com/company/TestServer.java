@@ -19,7 +19,7 @@ public class TestServer {
 			out=new PrintWriter(s.getOutputStream());
 			in=new BufferedReader(new InputStreamReader(s.getInputStream()));
 			out.println("s|g");
-			out.println("done");
+            out.println("done");
 			out.flush();
 			String line=in.readLine();
 			if(line==null || !line.equals("0,1,1"))
@@ -33,10 +33,10 @@ public class TestServer {
 			System.out.println("Your Server ran into some IOException (-40)");
 		}finally{
 			try {
-				in.close();
-				out.close();
-				s.close();
-			} catch (IOException e) {
+				//in.close();
+				//out.close();
+				//s.close();
+			} catch (Exception e) {
 				System.out.println("Your Server ran into some IOException (-40)");
 			}
 		}

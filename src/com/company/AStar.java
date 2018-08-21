@@ -8,7 +8,7 @@ public class AStar implements ISearcher
     int _nodesEvaluated = 0;
     @Override
     public Solution search(ISearchable problem) {
-        Solution astar_solution = new Solution();
+        Solution astar_solution = new Solution(problem.getSize());
         State destination= problem.getGoalState();
         State source = problem.getInitialState();
         LinkedList<State> openList = new LinkedList<>();

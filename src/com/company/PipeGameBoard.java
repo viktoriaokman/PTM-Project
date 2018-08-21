@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
     int size = 0;
@@ -8,15 +9,16 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
     public PipeGameBoard(IProblem problem)
     {
         this.size = problem.GetSize();
-        String temp = problem.GetProblemContent();
+        List<String> temp = problem.GetProblemContent();
         String temp2 = "";
         board= new Point [size][size];
+
 
         for (int k = 0; k < size ; k++)
         {
             for (int l = 0;l<size ;l++)
             {
-                board[k][l] = new Point<>(k,l,null,TypeOfPoint.Wall,false);
+                board[k][l] = new Point<>(k,l,null,TypeOfPoint.Wall,false,0);
             }
         }
 
@@ -24,9 +26,16 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++) {
-                if (temp.length()>0) {
-                    temp2 = Character.toString(temp.charAt(0));
-                    temp = temp.substring(1);
+                if (temp.size()>0) {
+                    //temp2 = Character.toString(temp.get(0).charAt(0));
+                    //temp = temp.substring(1);
+                    try {
+                        temp2 = Character.toString(temp.get(i).charAt(j));
+                    }
+                    catch (Exception e)
+                    {
+                        break;
+                    }
                 }
                 board[i][j].content = temp2;
                 if (temp2 != null)
@@ -261,6 +270,7 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
             // Turn next point
             SP.state = (Point.TurnPoint(SP.state)).Clone();
 
+
                while (!SP.state.content.equals(initial.state.content))
                {
                    // Check if next turned point can connect
@@ -273,5 +283,10 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
                }
         }
         return list;
+    }
+
+    @Override
+    public int getSize() {
+        return size;
     }
 }

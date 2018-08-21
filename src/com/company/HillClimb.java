@@ -14,6 +14,7 @@ public class HillClimb implements ISearcher {
         int maxIters = 100;
         destination = problem.getGoalState();
         source = problem.getInitialState();
+        HC_solution = new Solution(problem.getSize());
         State currentNode = source;
         int currentIter = 0;
         LinkedList<State> tempRoute = new LinkedList<State>();

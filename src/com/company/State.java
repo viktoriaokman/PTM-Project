@@ -4,7 +4,6 @@ public class State<T> {
     T state;
     State parent;
     double value = 1;
-
     public State(T state) {
         this.state = state;
     }

@@ -9,7 +9,7 @@ public class BFS  implements ISearcher{
 
     @Override
     public Solution search(ISearchable problem) {
-        bfs_solution = new Solution();
+        bfs_solution = new Solution(problem.getSize());
         State<Point> source = problem.getInitialState();
         State<Point> destination = problem.getGoalState();
 

@@ -1,25 +1,24 @@
 package com.company;
 
-import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class SocketServer extends Server implements IServer{
-
-    private Boolean isRunning = false; // Used to prevent multiple instances. maybe redundant
-
+    boolean closeServer = false;
     public SocketServer(int port) {
         super(port);
-        isRunning = false;
+        //isRunning = false;
     }
 
     @Override
     public void start(ClientHandler ch) {
-        if (!isRunning) {
+        //if (!isRunning) {
             super.start(ch); // stopListen = false;
             //runServer();
             new Thread(()->runServer()).start();
-        }
+        //}
 
     }
 
@@ -27,42 +26,43 @@ public class SocketServer extends Server implements IServer{
         ServerSocket server = null;
         try {
 
-            server = new ServerSocket(port);
-            server.setSoTimeout(3000);
-        } catch (IOException e) {
-            //e.printStackTrace();
-            stopListen = true;
-            isRunning = false;
-        }
-        while (!stopListen) {
-            isRunning = true;
-            try {
-                // Check connection is made
-                    Socket clientSocket = server.accept();
 
-                        ch.handleClient(clientSocket.getInputStream(), clientSocket.getOutputStream());
-                /*clientSocket.getOutputStream().close();
+            while (!closeServer) {
+                //isRunning = true;
+                try {
+                    // Check connection is made
+                    server = new ServerSocket(port);
+                    server.setSoTimeout(3000);
+
+                    Socket clientSocket = server.accept();
+                    InputStream in = clientSocket.getInputStream();
+                    OutputStream out = clientSocket.getOutputStream();
+
+                    ch.handleClient(in, out);
+                // op 2
+                 /*   clientSocket.getOutputStream().close();
                 clientSocket.getInputStream().close();
 
                 clientSocket.close();*/
+                }
+                catch ( Exception ex) {
+                    //isRunning = false;
+                    ex.getMessage();
+                }
             }
-            catch ( Exception ex) {
-            isRunning = false;
-            }
+        } catch (Exception e) {
         }
 
+        try {
+            //server.close();
+        }
+        catch (Exception e) {
+
+        }
     }
-
-    // why ?
-    /*public void StartServer() {
-        stopListen = false;
-        if (!isRunning)
-            runServer();
-    }*/
-
     @Override
     public void stop() {
         super.stop();
-        isRunning = false;
+        closeServer = true;
     }
 }

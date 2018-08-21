@@ -1,8 +1,6 @@
 package com.company;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 
 public class ClientHandler implements IClientHandler {
 
@@ -12,10 +10,10 @@ public class ClientHandler implements IClientHandler {
     @Override
     public void handleClient(InputStream inFromClient, OutputStream outToClient) {
         // Convert input to Problem
-        PrintWriter out =
-                new PrintWriter(outToClient, true);
+        PrintWriter out = new PrintWriter(outToClient, true);
 
-        Problem problemFromUser = new Problem(inFromClient);
+        BufferedReader problemin = new BufferedReader(new InputStreamReader(inFromClient));
+        Problem problemFromUser = new Problem(problemin);
 
         ISolution solution;
         if (cacheManager.isSolutionStored(problemFromUser)) {
@@ -29,9 +27,15 @@ public class ClientHandler implements IClientHandler {
             /*outToClient.write(solution.toOutPutStreamAsBytes());
             outToClient.flush();*/
             out.println(solution.GetContent());
+
             out.println("done");
+            // OP 1
+            //out.close();
+            //inFromClient.close();
+            //outToClient.close();
+
         } catch (Exception e) {
-            e.printStackTrace();
+            e.getMessage();
         }
     }
 

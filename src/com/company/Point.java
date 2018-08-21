@@ -6,19 +6,21 @@ public class Point<String> {
     String content;
     TypeOfPoint typeOfPoint;
     boolean visited = false;
+    int numOfTurns = 0;
 
-    public Point(int x,int y,String content,TypeOfPoint typeOfPoint,boolean visited)
+    public Point(int x,int y,String content,TypeOfPoint typeOfPoint,boolean visited,int numOfTurns)
     {
         this.x = x;
         this.y = y;
         this.typeOfPoint = typeOfPoint;
         this.content = content;
         this.visited = visited;
+        this.numOfTurns = numOfTurns;
     }
 
     public Point Clone()
     {
-        return new Point(this.x,this.y,this.content,this.typeOfPoint,this.visited);
+        return new Point(this.x,this.y,this.content,this.typeOfPoint,this.visited,this.numOfTurns);
     }
 
     public TypeOfPoint GetPointType()
@@ -56,6 +58,7 @@ public class Point<String> {
                 break;
             }
         }
+        p.numOfTurns++;
         return p;
     }
 
