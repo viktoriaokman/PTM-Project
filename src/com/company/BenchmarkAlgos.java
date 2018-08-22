@@ -45,9 +45,9 @@ public class BenchmarkAlgos {
         HillClimb hc = new HillClimb();
         AStar astar = new AStar();
 
-        algoTime.put(dfs,TestAlgo(dfs,sizeOfBoard,problem));
-        algoTime.put(bfs,TestAlgo(bfs,sizeOfBoard,problem));
-        algoTime.put(gbfs,TestAlgo(gbfs,sizeOfBoard,problem));
+        algoTime.put(dfs,TestAlgo(dfs,sizeOfBoard,problem.clone()));
+        algoTime.put(bfs,TestAlgo(bfs,sizeOfBoard,problem.clone()));
+        algoTime.put(gbfs,TestAlgo(gbfs,sizeOfBoard,problem.clone()));
 
         algoTime.put(hc,Long.MAX_VALUE);
         //algoTime.put(hc,TestAlgo(hc,sizeOfBoard,problem));

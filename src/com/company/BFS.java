@@ -9,11 +9,10 @@ public class BFS  implements ISearcher{
 
     @Override
     public Solution search(ISearchable problem) {
-        bfs_solution = new Solution(problem.getSize());
+        bfs_solution = new Solution(problem.getSize(),problem.getNumOfRows());
         State<Point> source = problem.getInitialState();
         State<Point> destination = problem.getGoalState();
 
-        // TODO : improve - make sure this has only unique states!!
         LinkedList<State> queue = new LinkedList<State>();
         queue.add(source);
         source.state.visited = true;
@@ -33,7 +32,7 @@ public class BFS  implements ISearcher{
                 State<Point> n=neighbours.get(i);
                 if(n!=null && !n.state.visited)
                 {
-                    n.setCameFrom(element); // M
+                    n.setCameFrom(element);
                     _nodesEvaluated++;
                     if (n.state.content.equals(destination.state.content))
                     {

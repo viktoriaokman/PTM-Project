@@ -5,16 +5,20 @@ import java.util.List;
 
 public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
     int size = 0;
+    int numOfRows = 0;
     Point<String>[][] board ;
+    IProblem _problem;
     public PipeGameBoard(IProblem problem)
     {
+        _problem = problem;
         this.size = problem.GetSize();
+        this.numOfRows = problem.GetNumOfRows();
         List<String> temp = problem.GetProblemContent();
         String temp2 = "";
-        board= new Point [size][size];
+        board= new Point [numOfRows][size];
 
 
-        for (int k = 0; k < size ; k++)
+        for (int k = 0; k < numOfRows ; k++)
         {
             for (int l = 0;l<size ;l++)
             {
@@ -23,7 +27,7 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
         }
 
 
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < numOfRows; i++)
         {
             for (int j = 0; j < size; j++) {
                 if (temp.size()>0) {
@@ -49,9 +53,9 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
                             case "g":
                                 board[i][j].typeOfPoint = TypeOfPoint.End;
                                 break;
-                        /*case "w":
+                        case " ":
                             board[i][j].typeOfPoint = TypeOfPoint.Wall;
-                            break;*/
+                            break;
                             default:
                                 board[i][j].typeOfPoint = TypeOfPoint.Common;
                                 break;
@@ -61,6 +65,8 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
             }
         }
     }
+
+
     public boolean checkIfWall(int x, int y)
     {
         try {
@@ -76,7 +82,8 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
     {
         if (!checkIfWall(x-1,y))
         {
-            return board[x-1][y];
+            if (!board[x-1][y].visited)
+                return board[x-1][y];
         }
 
         return  null;
@@ -86,7 +93,8 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
     {
         if (!checkIfWall(x+1,y))
         {
-            return board[x+1][y];
+            if (!board[x+1][y].visited)
+                return board[x+1][y];
         }
 
         return  null;
@@ -96,7 +104,8 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
     {
         if (!checkIfWall(x,y-1))
         {
-            return board[x][y-1];
+            if (!board[x][y-1].visited)
+                return board[x][y-1];
         }
 
         return  null;
@@ -105,7 +114,8 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
     {
         if (!checkIfWall(x,y+1))
         {
-            return board[x][y+1];
+            if (!board[x][y+1].visited)
+                return board[x][y+1];
         }
 
         return  null;
@@ -218,7 +228,7 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
 
     public Point<String> getStart()
     {
-        for (int i = 0; i < size ; i++)
+        for (int i = 0; i < numOfRows ; i++)
         {
             for (int j = 0; j < size ; j++)
             {
@@ -231,7 +241,7 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
 
     public Point<String> getEnd()
     {
-        for (int i = 0; i < size ; i++)
+        for (int i = 0; i < numOfRows ; i++)
         {
             for (int j = 0; j < size ; j++)
             {
@@ -261,25 +271,32 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
         for (int i = 0 ; i < allPoint.size();i++)
         {
             State<Point> SP = new State<Point>(allPoint.get(i).Clone());
-            State<Point> initial = new State<Point>(allPoint.get(i).Clone());
+            State<Point> initial = new State<>(SP.state.Clone()).Clone();
             if (Point.PointsConnected(Current.state,SP.state) && !SP.state.visited)
             {
                 SP.setCameFrom(Current);
-                list.add(SP);
+                board[Current.state.x][Current.state.y].visited = true;
+                //SP.state.visited = true;
+                State<Point> pointToAdd = SP.Clone();
+                list.add(pointToAdd);
             }
             // Turn next point
-            SP.state = (Point.TurnPoint(SP.state)).Clone();
+            SP.state = (Point.TurnPoint(SP.state.Clone())).Clone();
 
 
                while (!SP.state.content.equals(initial.state.content))
                {
                    // Check if next turned point can connect
-                   if (Point.PointsConnected(initial.state,SP.state) && !SP.state.visited)
+                   if (Point.PointsConnected(Current.state,SP.state) && !SP.state.visited)
                    {
                        SP.setCameFrom(Current);
-                       list.add(new State<Point>(SP.state.Clone()));
+                       board[Current.state.x][Current.state.y].visited = true;
+                       State<Point> pointToAdd = SP.Clone();
+                       list.add(pointToAdd);
+
+                       //list.add(new State<Point>(SP.state.Clone()).Clone());
                    }
-                   SP.state = Point.TurnPoint(SP.state).Clone();
+                   SP.state = (Point.TurnPoint(SP.state.Clone())).Clone();
                }
         }
         return list;
@@ -288,5 +305,15 @@ public class PipeGameBoard /*extends SearchableBoard*/ implements ISearchable {
     @Override
     public int getSize() {
         return size;
+    }
+
+    @Override
+    public int getNumOfRows() {
+        return numOfRows;
+    }
+
+    @Override
+    public ISearchable clone() {
+        return new PipeGameBoard(_problem);
     }
 }

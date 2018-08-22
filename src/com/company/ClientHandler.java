@@ -26,7 +26,13 @@ public class ClientHandler implements IClientHandler {
         try {
             /*outToClient.write(solution.toOutPutStreamAsBytes());
             outToClient.flush();*/
-            out.println(solution.GetContent());
+            // while solution is not empty
+            for (int i = 0;i < solution.numberOfLineInSolution(); i ++)
+            {
+                out.println(solution.GetContent());
+            }
+                //out.println(sol);
+
 
             out.println("done");
             // OP 1
@@ -35,7 +41,7 @@ public class ClientHandler implements IClientHandler {
             //outToClient.close();
 
         } catch (Exception e) {
-            e.getMessage();
+            //e.getMessage();
         }
     }
 

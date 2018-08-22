@@ -23,7 +23,7 @@ public class FileCacheManager extends CacheManager implements ICacheManager{
      */
     @Override
     public void save(IProblem problemAsID, ISolution solutionToSave) {
-        String line = String.format("#Problem:%1$s #Solution:%2$s ",problemAsID.GetProblemContent(),solutionToSave.GetContent());
+        String line = String.format("#Problem:%1$s #Solution:%2$s ",problemAsID.GetProblemContent(),solutionToSave.GetAllContent());
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.write(line); // Make sure this is with delimiters or something..
         printWriter.close();

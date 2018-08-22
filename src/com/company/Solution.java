@@ -6,59 +6,75 @@ public class Solution implements ISolution {
     Stack<State> _solutionContent;
     Stack<State> solutionOut = new Stack<>();
     int size = 0;
-    @Override
-    public String GetContent() {
-
-        String out = "";
+    int numOfRows = 0;
+    String finalOut = "";
+    String[] solutionlines = new String[]{};
+    int replyLine = 0;
+    public int numberOfLineInSolution()
+    {
+        return  solutionlines.length;
+    }
+    public String GetAllContent()
+    {
         Stack<State> backup = (Stack<State>)_solutionContent.clone();
+        Stack<State> helper =  new Stack<>();
 
         State<Point> currentPoint = _solutionContent.pop();
         while (currentPoint!=null)
         {
-            solutionOut.add(currentPoint);
+            helper.add(currentPoint);
             currentPoint = currentPoint.getParent();
         }
+        _solutionContent = backup;
 
-        try {
-            int indexCount = 0;
-            while (!solutionOut.isEmpty())
-            {
+        State<Point> current = helper.pop();
+        for (int i = 0; i < numOfRows ; i ++) {
+            for (int j = 0; j < size; j++) {
+                if (current.state.x == i && current.state.y == j) {
+                    Point a = (Point)current.state;
+                    //out = out + a.numOfTurns; IF ELI
+                    if (!a.content.equals("g"))
+                    {
+                        finalOut = finalOut+ a.numOfTurns;
 
-// S-G
-                State current = solutionOut.pop();
-                Point a = (Point)current.state;
-                //out = out + a.numOfTurns; IF ELI
-                if (!a.content.equals("g"))
-                {
-                    out = out + a.numOfTurns;
+                    }
+                    else if (a.content.equals("g"))
+                        finalOut = finalOut+ "1";
 
-                }
-                else if (a.content.equals("g"))
-                    out = out + "1";
-
-                indexCount++;
-                if (indexCount == size)
-                {
-                    out = out + "\n";
-                    break;
+                    if (!helper.isEmpty())
+                        current = helper.pop();
                 }
                 else
                 {
-                    out = out + ",";
+                    finalOut = finalOut + "0";
                 }
-
+                if (j < size-1)
+                finalOut += ",";
             }
-        } catch (ClassCastException e) {
-            return null;
+            if (i < numOfRows-1)
+                finalOut+="\n";
         }
-        _solutionContent = backup;
-        out = out.substring(0,out.length()-1);
-        return out;
+
+        String temp = new String();
+        temp = finalOut;
+        String[] s = temp.split("\n").clone();
+        solutionlines = s.clone();
+        //if (s[temp.split("\n").length-1].length()%(size*2 - 1)==0)
+
+       return finalOut;
     }
 
-    public Solution(int size)
+    @Override
+    public String GetContent() {
+        String reply = solutionlines[replyLine];
+        replyLine++;
+        return reply;
+    }
+
+    public Solution(int size,int numOfRows)
     {
         this.size = size;
+        this.numOfRows = numOfRows;
         this._solutionContent = new Stack<>();
     }
     public void add_solutionContent(State content) {

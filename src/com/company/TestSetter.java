@@ -45,7 +45,7 @@ public class TestSetter {
 	}
 	// stop your server here
 	public static void stopServer(){
-		//s.stop();
+		s.stop();
 	}
 	
 	/* ------------- Best First Search Test --------------

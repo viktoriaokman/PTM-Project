@@ -11,6 +11,7 @@ public class Problem implements IProblem {
     private List<String> problemLines;
 
     int _size = 0;
+    int _numOfRows = 1;
     public Problem(InputStream inFromClient) {
         problem = PTMUtils.convertStreamToString(inFromClient);
         _size=problem.length();
@@ -28,11 +29,20 @@ public class Problem implements IProblem {
             //e.printStackTrace();
         }
         _size=problemLines.get(0).length();
+
+        try {
+            if (problemLines.size() > 0)
+                _numOfRows = problemLines.size();
+        }
+        catch (Exception e)
+        {
+
+        }
     }
 
     public Point[][] toPoints()
     {
-        Point[][] p = new Point[_size][_size];
+        Point[][] p = new Point[_numOfRows][_size];
         return p;
     }
 
@@ -43,5 +53,10 @@ public class Problem implements IProblem {
     @Override
     public int GetSize() {
         return _size;
+    }
+
+    @Override
+    public int GetNumOfRows() {
+        return _numOfRows;
     }
 }

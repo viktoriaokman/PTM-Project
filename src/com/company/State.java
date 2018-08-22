@@ -8,6 +8,7 @@ public class State<T> {
         this.state = state;
     }
     public State(T state, double value) {this.state = state; this.value = value;}
+    public State(T state, double value,State parent) {this.state = state; this.value = value;setCameFrom(parent);}
     public void setCameFrom(State n) {
         parent = n;
     }
@@ -19,7 +20,7 @@ public class State<T> {
 
     public State Clone()
     {
-        return new State(this.state,this.value);
+        return new State(this.state,this.value,this.getParent());
     }
 
     public double getTotalDistance() {

@@ -11,7 +11,7 @@ public class DFS implements ISearcher {
 
     @Override
     public Solution search(ISearchable problem) {
-        dfs_solution = new Solution(problem.getSize());
+        dfs_solution = new Solution(problem.getSize(),problem.getNumOfRows());
 
         destination = problem.getGoalState();
         source = problem.getInitialState();
@@ -49,6 +49,7 @@ public class DFS implements ISearcher {
                     }
                     graph.add(n);
                     n.state.visited=true;
+                    ;
                     //neighbours.addAll(problem.getAllPossibleStates(n));
                     graph.addAll(problem.getAllPossibleStates(n));
 

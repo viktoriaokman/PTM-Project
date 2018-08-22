@@ -17,10 +17,10 @@ public class MainTrain {
 		// execution test (40 points)
 		Random r=new Random();
 		int port=6000+r.nextInt(1000);
-		TestSetter.runServer(port);
-		try{
-			TestServer.runClient(port);
-			TestServer.runClient(port);
+			TestSetter.runServer(port);
+			try{
+				TestServer.runClient(port);
+				TestServer.runClient(port);
 			TestServer.runClient(port);
 
 		}finally{

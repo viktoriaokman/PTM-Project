@@ -2,4 +2,29 @@
  #Problem:[s|g] #Solution:,,11
  #Problem:[s|g] #Solution:0,1,1
  #Problem:[s|g] #Solution:0,1,1
- #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 
+ #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s--,   |,  |g] #Solution:0,2,1 #Problem:[s-L,   |,   g] #Solution:0,0,2 #Problem:[s-L,   |,   g] #Solution:0,0,2 #Problem:[s-L,   |,   g] #Solution:0
+0,2,0,1, #Problem:[s-L,   |,   g] #Solution:0,0
+2,0,1
+ #Problem:[s-L,   |,   g] #Solution:0,0,0
+0,0,0
+0,0,0 #Problem:[s-L,   |,   g] #Solution:0,0,0
+0,0,0
+0,0,0 #Problem:[s-L,   |,   g] #Solution:0,0,2
+0,0,0
+0,0,1 #Problem:[s-L,   |,   g] #Solution:0,0,2
+0,0,0
+0,0,1 #Problem:[s-L,   |,   g] #Solution:0,0,2
+0,0,0
+0,0,1 #Problem:[s-L,   |,   g] #Solution:0,0,2
+0,0,0
+0,0,1 #Problem:[s-L,   |,   g] #Solution:0,0,2
+0,0,0
+0,0,1 #Problem:[s-L,   |,   g] #Solution:0,0,2
+0,0,0
+0,0,1 #Problem:[s-L,   |,   g] #Solution:0,0,2
+0,0,0
+0,0,1 #Problem:[s|g] #Solution:0,1,1
+0,0,0
+0,0,0 #Problem:[s|g] #Solution:0,1,1
+0,0,0
+0,0,0 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 #Problem:[s|g] #Solution:0,1,1 

@@ -11,7 +11,7 @@ public class GBFS implements ISearcher{
 
     @Override
     public Solution search(ISearchable problem) {
-        gbfs_solution = new Solution(problem.getSize());
+        gbfs_solution = new Solution(problem.getSize(),problem.getNumOfRows());
 
         destination = problem.getGoalState();
         source = problem.getInitialState();

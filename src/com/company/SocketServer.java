@@ -45,7 +45,7 @@ public class SocketServer extends Server implements IServer{
                 }
                 catch ( Exception ex) {
                     //isRunning = false;
-                    ex.getMessage();
+                    //ex.getMessage();
                 }
             }
         } catch (Exception e) {
