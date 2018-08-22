@@ -19,6 +19,7 @@ public class TestServer {
 			out=new PrintWriter(s.getOutputStream());
 			in=new BufferedReader(new InputStreamReader(s.getInputStream()));
 			out.println("s|g");
+			
 			//out.println("  |");
 			//out.println("  g");
 
